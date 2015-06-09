@@ -1,0 +1,9 @@
+<h1><%= @request.name %></h1>
+<p><%= @request.email %></p>
+<p><%= @request.department %></p>
+<p><%= @request.message %></p>
+
+<%= link_to "Edit", edit_request_path(@request) %>
+<br>
+<%= link_to "Delete", request_path(@request), method: :delete,
+          data: {confirm: "Do you really want to delete it?"} %>

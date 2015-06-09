@@ -1,0 +1,36 @@
+<h1>Suppoer Requests</h1>
+
+<%= form_tag requests_path, method: :get do %>
+  <%= label_tag :q, "Search" %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Message</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.name %></td>
+        <td><%= request.email %></td>
+        <td><%= request.department %></td>
+        <td><%= request.message %></td>
+        <td>
+          <% label = request.done ? "Done" : "Un-Done" %>
+          <%= button_to label, done_request_path(request) %>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @requests, q: params[:q] %>
